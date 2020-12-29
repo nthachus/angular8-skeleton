@@ -1,0 +1,39 @@
+version: "3"
+services:
+  web-dev:
+    build: .
+    image: "node-chrome:10-alpine"
+    container_name: skeleton-web
+    volumes:
+      - ".:/usr/src/app"
+    working_dir: /usr/src/app
+    ports:
+      - 4200:4200
+    depends_on:
+      - api-dev
+    command: /bin/sh -c "
+      yarn --no-bin-links && yarn cache clean
+      && yarn format -c && yarn lint
+      && if [ ! -f ./dist/ng8-skeleton/index.html ]; then yarn build; fi
+      && yarn test && yarn e2e
+      && yarn start --host=0.0.0.0 --disableHostCheck
+      "
+
+  web-prod:
+    image: "nginx:alpine"
+    container_name: skeleton-dist
+    volumes:
+      - "./dist/ng8-skeleton:/var/www/html"
+      - "../sinatra-rest-skeleton/spec/fixtures/nginx_data:/etc/nginx/data:ro"
+      - "../sinatra-rest-skeleton/spec/fixtures/ldap_data:/etc/nginx/ssl:ro"
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - api-prod
+    command: /bin/sh -c "
+      [ -f /var/www/html/index.html ]
+      && mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak
+      && ln -s /etc/nginx/data/site.conf /etc/nginx/conf.d/default.conf
+      && nginx -g 'daemon off;'
+      "
