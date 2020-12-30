@@ -6,7 +6,7 @@ import { TranslateInterceptor } from './translate.interceptor';
 describe('TranslateInterceptor', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot({})],
+      imports: [TranslateModule.forRoot()],
       providers: [TranslateInterceptor]
     });
   });

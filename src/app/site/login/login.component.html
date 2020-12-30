@@ -1,5 +1,42 @@
-<h3>login works!</h3>
+<div class="container my-5">
+  <div class="row">
+    <aside class="col-sm-6 col-md-5 col-lg-4 mx-auto my-5">
+      <div class="card mt-4 mt-sm-5">
+        <article class="card-body">
+          <h4 class="card-title text-center mb-4 mt-1">Sign In</h4>
+          <hr />
 
-<form novalidate>
-  <button type="submit" class="btn btn-lg btn-block btn-primary">Login</button>
-</form>
+          <p class="text-danger text-center">Some message goes here</p>
+
+          <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user fa-lg"></i></span>
+                </div>
+                <input type="email" class="form-control" name="" placeholder="Email or login" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-lock fa-lg"></i></span>
+                </div>
+                <input type="password" class="form-control" placeholder="******" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+            </div>
+
+            <p class="text-center"><a href="#">Forgot your password?</a></p>
+          </form>
+        </article>
+      </div>
+      <!-- /.card -->
+    </aside>
+    <!-- /.col -->
+  </div>
+</div>
