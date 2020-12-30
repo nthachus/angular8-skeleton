@@ -1,11 +1,11 @@
 version: "3"
 services:
   web-dev:
-    build: .
+    build: ../angular8-skeleton
     image: "node-chrome:10-alpine"
     container_name: skeleton-web
     volumes:
-      - ".:/usr/src/app"
+      - "../angular8-skeleton:/usr/src/app"
     working_dir: /usr/src/app
     ports:
       - 4200:4200
@@ -23,7 +23,7 @@ services:
     image: "nginx:alpine"
     container_name: skeleton-dist
     volumes:
-      - "./dist/ng8-skeleton:/var/www/html"
+      - "../angular8-skeleton/dist/ng8-skeleton:/var/www/html"
       - "../sinatra-rest-skeleton/spec/fixtures/nginx_data:/etc/nginx/data:ro"
       - "../sinatra-rest-skeleton/spec/fixtures/ldap_data:/etc/nginx/ssl:ro"
     ports:

@@ -10,10 +10,9 @@
     "test": "yarn ng test",
     "lint": "yarn ng lint --format=stylish",
     "e2e": "yarn ng e2e --webdriverUpdate=false",
-    "postinstall": "yarn webdriver update --gecko false --standalone false --versions.chrome latest",
+    "chromedriver": "node node_modules/webdriver-manager/bin/webdriver-manager update --gecko false --standalone false --versions.chrome",
     "format": "node node_modules/prettier/bin-prettier.js --ignore-path .gitignore .",
-    "clean": "node node_modules/rimraf/bin.js dist tmp out-tsc coverage",
-    "webdriver": "node node_modules/webdriver-manager/bin/webdriver-manager"
+    "clean": "node node_modules/rimraf/bin.js dist tmp out-tsc coverage"
   },
   "dependencies": {
     "@angular/animations": "~8.2.14",
