@@ -6,6 +6,7 @@ $font-family-sans-serif: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Seg
   'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
 $enable-validation-icons: false;
+$input-btn-focus-width: 0.1rem;
 
 @import '~bootswatch/dist/cosmo/variables';
 @import '~bootstrap/scss/bootstrap';
@@ -17,3 +18,12 @@ $enable-validation-icons: false;
 $fa-font-path: '//stackpath.bootstrapcdn.com/font-awesome/4.7.0/fonts';
 
 @import '~font-awesome/scss/font-awesome';
+
+/**
+ * Layouts
+ */
+body {
+  &.site {
+    background-color: $light;
+  }
+}

@@ -10,6 +10,7 @@ import { AuthService, TokenData } from '../../shared/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  errorMessage: string;
   private returnUrl: string;
 
   constructor(
@@ -43,14 +44,15 @@ export class LoginComponent implements OnInit {
         if (!user) {
           // Invalid token?
           f.resetForm();
+          this.errorMessage = 'Something went wrong!';
         } else {
           this.onLoggedIn(user);
         }
       },
-      err => {
+      ex => {
         // If username or password is incorrect
         f.resetForm();
-        Logger.warn(err);
+        this.errorMessage = ex.error.error || ex.message || ex.statusText;
       }
     );
   }

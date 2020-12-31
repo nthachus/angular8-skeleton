@@ -1,42 +1,61 @@
-<div class="container my-5">
-  <div class="row">
-    <aside class="col-sm-6 col-md-5 col-lg-4 mx-auto my-5">
-      <div class="card mt-4 mt-sm-5">
-        <article class="card-body">
-          <h4 class="card-title text-center mb-4 mt-1">Sign In</h4>
-          <hr />
+<div class="container py-4">
+  <div class="card login-box mx-auto shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title text-center font-weight-normal mb-4 mt-1">Sign In</h4>
+      <hr />
 
-          <p class="text-danger text-center">Some message goes here</p>
+      <p *ngIf="errorMessage" class="text-danger text-center mb-2">Some message goes here</p>
 
-          <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-user fa-lg"></i></span>
-                </div>
-                <input type="email" class="form-control" name="" placeholder="Email or login" />
-              </div>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate class="py-2">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label for="loginId" class="input-group-text"><i class="fa fa-user fa-lg fa-fw"></i></label>
             </div>
+            <input
+              type="text"
+              class="form-control"
+              id="loginId"
+              name="loginId"
+              [placeholder]="'Username' | translate"
+              ngModel
+              #loginId="ngModel"
+              [ngClass]="{ 'is-invalid': loginId.invalid && (loginId.dirty || f.submitted) }"
+              required
+              maxlength="255"
+              autofocus
+            />
+          </div>
+        </div>
 
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-lock fa-lg"></i></span>
-                </div>
-                <input type="password" class="form-control" placeholder="******" />
-              </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label for="password" class="input-group-text"><i class="fa fa-lock fa-lg fa-fw"></i></label>
             </div>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              [placeholder]="'Password' | translate"
+              ngModel
+              #password="ngModel"
+              [ngClass]="{ 'is-invalid': password.invalid && (password.dirty || f.submitted) }"
+              required
+              maxlength="72"
+              autocomplete="off"
+            />
+          </div>
+        </div>
 
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
-            </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block btn-lg" translate>Login</button>
+        </div>
 
-            <p class="text-center"><a href="#">Forgot your password?</a></p>
-          </form>
-        </article>
-      </div>
-      <!-- /.card -->
-    </aside>
-    <!-- /.col -->
+        <p class="text-center mb-1"><a href="#" translate>Forgot your password?</a></p>
+      </form>
+    </div>
   </div>
+  <!-- /.card -->
 </div>

@@ -1,0 +1,15 @@
+.login-box {
+  max-width: 25rem;
+}
+
+@media (min-height: 380px) {
+  .login-box {
+    margin-top: calc(50vh - 190px);
+  }
+}
+
+@media (min-height: 640px) {
+  .login-box {
+    margin-top: 8rem;
+  }
+}
