@@ -69,7 +69,7 @@ export class AuthService {
       }),
       catchError(err => {
         // Skip client SSL errors
-        Logger.warn(err);
+        Logger.warn(err.error || err);
 
         return of(null);
       })

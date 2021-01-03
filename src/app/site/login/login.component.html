@@ -1,10 +1,10 @@
 <div class="container py-4">
   <div class="card login-box mx-auto shadow-sm">
     <div class="card-body">
-      <h4 class="card-title text-center font-weight-normal mb-4 mt-1">Sign In</h4>
+      <h4 class="card-title text-center font-weight-normal mb-4 mt-1" translate>Sign In</h4>
       <hr />
 
-      <p *ngIf="errorMessage" class="text-danger text-center mb-2">Some message goes here</p>
+      <p *ngIf="errorMessage && f.pristine" class="text-danger text-center smaller-1 mb-2">{{ errorMessage }}</p>
 
       <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate class="py-2">
         <div class="form-group">

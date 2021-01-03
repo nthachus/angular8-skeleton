@@ -40,19 +40,14 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(f.value.loginId, f.value.password).subscribe(
-      user => {
-        if (!user) {
-          // Invalid token?
-          f.resetForm();
-          this.errorMessage = 'Something went wrong!';
-        } else {
-          this.onLoggedIn(user);
-        }
+      (user: TokenData) => {
+        // TODO: if (!user) Invalid token?
+        this.onLoggedIn(user);
       },
-      ex => {
+      err => {
         // If username or password is incorrect
         f.resetForm();
-        this.errorMessage = ex.error.error || ex.message || ex.statusText;
+        this.errorMessage = err.error.message || err.error || err.message;
       }
     );
   }

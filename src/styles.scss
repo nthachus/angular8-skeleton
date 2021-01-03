@@ -27,3 +27,32 @@ body {
     background-color: $light;
   }
 }
+
+/**
+ * Utility classes
+ */
+.smaller-1 {
+  font-size: 96%;
+}
+.smaller-2 {
+  font-size: 93%;
+}
+.smaller-3 {
+  font-size: 90%;
+}
+.smaller-4 {
+  font-size: 86%;
+}
+
+.bigger-1 {
+  font-size: 103%;
+}
+.bigger-2 {
+  font-size: 107%;
+}
+.bigger-3 {
+  font-size: 110%;
+}
+.bigger-4 {
+  font-size: 113%;
+}
