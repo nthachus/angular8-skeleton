@@ -10,7 +10,7 @@ import { AuthService, TokenData } from '../../shared/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  errorMessage: string;
+  errorMessage: string | null;
   private returnUrl: string;
 
   constructor(
@@ -63,8 +63,10 @@ export class LoginComponent implements OnInit {
   }
 
   private initLayout() {
-    // DEBUG
-    Logger.info('initLayout', this.returnUrl);
+    this.errorMessage = localStorage.getItem('logoutCause');
+    if (this.errorMessage) {
+      localStorage.removeItem('logoutCause');
+    }
   }
 
   private onLoggedIn(data: TokenData) {

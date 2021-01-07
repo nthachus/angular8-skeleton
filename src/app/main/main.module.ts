@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
@@ -9,6 +12,9 @@ import { HeaderComponent } from './header/header.component';
   declarations: [MainComponent, HeaderComponent],
   imports: [
     CommonModule, //
+    NgbDropdownModule,
+    FormsModule,
+    TranslateModule,
     MainRoutingModule
   ],
   // providers: [UserService, UserFileService],

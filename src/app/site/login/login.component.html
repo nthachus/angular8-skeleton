@@ -4,7 +4,7 @@
       <h4 class="card-title text-center font-weight-normal mb-4 mt-1" translate>Sign In</h4>
       <hr />
 
-      <p *ngIf="errorMessage && f.pristine" class="text-danger text-center smaller-1 mb-2">{{ errorMessage }}</p>
+      <p *ngIf="errorMessage && f.pristine" class="text-danger text-center smaller-1 mb-2">{{ errorMessage | translate }}</p>
 
       <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate class="py-2">
         <div class="form-group">

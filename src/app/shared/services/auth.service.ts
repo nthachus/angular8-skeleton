@@ -47,7 +47,15 @@ export class AuthService {
 
   isAuthenticated(): TokenData | null {
     const token = AuthService.currentToken();
-    return !token || this.jwtHelper.isTokenExpired(token) ? null : this.decodeTokenData(token);
+    if (!token) {
+      return null;
+    }
+
+    if (this.jwtHelper.isTokenExpired(token)) {
+      throw new Error('Session token has expired.');
+    }
+
+    return this.decodeTokenData(token);
   }
 
   logout(redirect?: Router, state?: RouterStateSnapshot): void {
