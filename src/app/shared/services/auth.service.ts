@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
+import { LOGIN_LINK, LOGIN_LINK_RE, TOKEN_KEY } from '../constants';
 import { Logger } from '../logger';
 
 export interface TokenData {
@@ -86,7 +87,7 @@ export class AuthService {
 
   private doLogin(jwt: string): TokenData | null {
     const data = this.decodeTokenData(jwt);
-    localStorage.setItem('token', jwt);
+    localStorage.setItem(TOKEN_KEY, jwt);
 
     return data;
   }
@@ -101,7 +102,7 @@ export class AuthService {
   }
 
   static currentToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem(TOKEN_KEY);
   }
 
   /**
@@ -111,14 +112,14 @@ export class AuthService {
    * @param state    Used to retrieve the current URL.
    */
   static doLogout(redirect?: Router, state?: RouterStateSnapshot): void {
-    localStorage.removeItem('token');
+    localStorage.removeItem(TOKEN_KEY);
 
     if (redirect) {
       const returnUrl = (state || redirect.routerState.snapshot).url;
       Logger.info('logout', returnUrl);
 
-      if (!/^(\/#)?\/login\b/.test(returnUrl)) {
-        redirect.navigate(['/login'], { queryParams: { returnUrl } }).then(ok => Logger.info('logged-out', ok));
+      if (!LOGIN_LINK_RE.test(returnUrl)) {
+        redirect.navigate([LOGIN_LINK], { queryParams: { returnUrl } }).then(ok => Logger.info('logged-out', ok));
       }
     }
   }

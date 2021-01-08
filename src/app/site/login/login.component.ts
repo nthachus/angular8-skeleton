@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
+import { FORCED_LOGOUT, LOGOUT_CAUSE } from '../../shared/constants';
 import { Logger } from '../../shared/logger';
 import { AuthService, TokenData } from '../../shared/services/auth.service';
 
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
     const data = this.authService.tokenData;
     if (data) {
       this.onLoggedIn(data);
-    } else if (!localStorage.getItem('forcedLogout')) {
+    } else if (!localStorage.getItem(FORCED_LOGOUT)) {
       // Auto-login with client SSL
       this.tryLoginWithSsl();
     } else {
@@ -63,14 +64,14 @@ export class LoginComponent implements OnInit {
   }
 
   private initLayout() {
-    this.errorMessage = localStorage.getItem('logoutCause');
+    this.errorMessage = localStorage.getItem(LOGOUT_CAUSE);
     if (this.errorMessage) {
-      localStorage.removeItem('logoutCause');
+      localStorage.removeItem(LOGOUT_CAUSE);
     }
   }
 
   private onLoggedIn(data: TokenData) {
-    localStorage.removeItem('forcedLogout');
+    localStorage.removeItem(FORCED_LOGOUT);
 
     const redirectUrl = this.returnUrl || '/';
     Logger.info('onLoggedIn', data, redirectUrl);

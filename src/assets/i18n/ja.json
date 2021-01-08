@@ -1,6 +1,12 @@
 {
+  "Sign In": "サインイン",
   "Username": "ユーザーID",
   "Password": "パスワード",
   "Login": "ログイン",
-  "Forgot your password?": "パスワードをお忘れですか？"
+  "Forgot your password?": "パスワードをお忘れですか？",
+  "Session token has expired.": "セッションがタイムアウトしました。",
+  "MENU": "メニュー",
+  "Profile": "プロフィール",
+  "Settings": "設定",
+  "Logout": "ログアウト"
 }

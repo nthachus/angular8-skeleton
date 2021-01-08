@@ -6,8 +6,9 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { AuthService } from '../services/auth.service';
+import { LOGOUT_CAUSE } from '../constants';
 import { Logger } from '../logger';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -25,7 +26,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         if (err.status === 401) {
           // Auto logout if 401 response returned from API
-          localStorage.setItem('logoutCause', err.error.message || err.error || err.message);
+          localStorage.setItem(LOGOUT_CAUSE, err.error.message || err.error || err.message);
           AuthService.doLogout(this.router);
 
           return of(err);
