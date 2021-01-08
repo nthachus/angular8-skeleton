@@ -9,10 +9,11 @@ import { environment } from '../../../environments/environment';
 import { LOGOUT_CAUSE } from '../constants';
 import { Logger } from '../logger';
 import { AuthService } from '../services/auth.service';
+import { ToastService } from '../services/toast.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastService: ToastService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (!req.url || req.url.indexOf(environment.apiBaseUrl) < 0) {
@@ -23,14 +24,18 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError(err => {
         // DEBUG
         Logger.error(err);
+        const message = err.error.message || err.error || err.message;
 
+        // Auto logout if 401 response returned from API
         if (err.status === 401) {
-          // Auto logout if 401 response returned from API
-          localStorage.setItem(LOGOUT_CAUSE, err.error.message || err.error || err.message);
+          localStorage.setItem(LOGOUT_CAUSE, message);
           AuthService.doLogout(this.router);
 
           return of(err);
         }
+
+        // Global error notifications
+        this.toastService.error(message, err.error.details);
 
         return throwError(err);
       })
