@@ -28,6 +28,12 @@ body {
   }
 }
 
+@each $color, $value in $theme-colors {
+  .toast-#{$color} {
+    @extend .alert-#{$color};
+  }
+}
+
 /**
  * Utility classes
  */

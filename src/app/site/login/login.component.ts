@@ -11,7 +11,7 @@ import { AuthService, TokenData } from '../../shared/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  errorMessage: string | null;
+  errorMessage: string | null; // TODO: private set
   private returnUrl: string;
 
   constructor(

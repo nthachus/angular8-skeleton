@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/common';
   template: `
     <app-header></app-header>
     <router-outlet></router-outlet>
+    <app-toasts></app-toasts>
   `
 })
 export class MainComponent implements OnInit, OnDestroy {

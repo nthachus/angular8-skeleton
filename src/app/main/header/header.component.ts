@@ -17,6 +17,6 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
-    localStorage.setItem(FORCED_LOGOUT, String(true));
+    localStorage.setItem(FORCED_LOGOUT, `${true}`);
   }
 }

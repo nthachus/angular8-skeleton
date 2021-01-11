@@ -20,8 +20,8 @@
         </button>
 
         <div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="navbarDropdownMain">
-          <a ngbDropdownItem routerLink="/" translate>Profile</a>
-          <a ngbDropdownItem routerLink="/" translate>Settings</a>
+          <a ngbDropdownItem routerLink="/account" translate>Profile</a>
+          <a ngbDropdownItem routerLink="/files" translate>My Files</a>
           <div class="dropdown-divider"></div>
           <a ngbDropdownItem [routerLink]="loginLink" (click)="logout()" translate>Logout</a>
         </div>

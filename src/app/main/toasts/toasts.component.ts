@@ -1,0 +1,19 @@
+import { Component, HostBinding, OnInit } from '@angular/core';
+
+import { ToastService } from '../../shared/services/toast.service';
+
+@Component({
+  selector: 'app-toasts',
+  templateUrl: './toasts.component.html',
+  styleUrls: ['./toasts.component.scss']
+})
+export class ToastsComponent implements OnInit {
+  @HostBinding('class.ngb-toasts')
+  readonly enableHostClass = true;
+
+  constructor(readonly toastService: ToastService) {}
+
+  ngOnInit(): void {
+    this.toastService.clear();
+  }
+}

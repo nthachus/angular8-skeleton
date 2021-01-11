@@ -35,7 +35,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
 
         // Global error notifications
-        this.toastService.error(message, err.error.details);
+        this.toastService.showError(message, err.error.details);
 
         return throwError(err);
       })
