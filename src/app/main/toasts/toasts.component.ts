@@ -9,7 +9,7 @@ import { ToastService } from '../../shared/services/toast.service';
 })
 export class ToastsComponent implements OnInit {
   @HostBinding('class.ngb-toasts')
-  readonly enableHostClass = true;
+  readonly wrapperClass = true;
 
   constructor(readonly toastService: ToastService) {}
 

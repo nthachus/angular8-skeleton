@@ -36,18 +36,18 @@ export class ToastService {
   }
 
   showError(message: any, details?: any, options: ToastOptions = {}): void {
-    this.show(message, details, { className: 'toast-danger alert-danger', ...options });
+    this.show(message, details, { className: 'toast-danger', ...options });
   }
 
   showInfo(message: any, details?: any, options: ToastOptions = {}): void {
-    this.show(message, details, { className: 'toast-info alert-info', ...options });
+    this.show(message, details, { className: 'toast-info', ...options });
   }
 
   showSuccess(message: any, details?: any, options: ToastOptions = {}): void {
-    this.show(message, details, { className: 'toast-success alert-success', ...options });
+    this.show(message, details, { className: 'toast-success', ...options });
   }
 
   showWarning(message: any, details?: any, options: ToastOptions = {}): void {
-    this.show(message, details, { className: 'toast-warning alert-warning', ...options });
+    this.show(message, details, { className: 'toast-warning', ...options });
   }
 }

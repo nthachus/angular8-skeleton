@@ -1,7 +1,14 @@
 :host {
-  top: 3.5rem;
+  &.ngb-toasts {
+    top: 3.5rem;
+    margin: 0;
+    padding: 0.5rem;
+    width: 100vw;
+    max-width: 22.875rem;
+  }
 
-  .toast {
-    max-width: 25rem;
+  hr {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
   }
 }

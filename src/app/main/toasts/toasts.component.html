@@ -3,11 +3,11 @@
   [class]="toast.className"
   [autohide]="true"
   [delay]="toast.delay || 5000"
-  (hidden)="toastService.remove(toast)"
+  (hide)="toastService.remove(toast)"
 >
-  <p class="mt-2">{{ toast.message }}</p>
+  <p class="mb-0">{{ toast.message }}</p>
   <ng-container *ngIf="toast.details">
     <hr />
-    <pre>{{ toast.details.join("\n") }}</pre>
+    <pre class="mb-0">{{ toast.details.join("\n") }}</pre>
   </ng-container>
 </ngb-toast>

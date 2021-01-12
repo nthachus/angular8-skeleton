@@ -30,7 +30,11 @@ body {
 
 @each $color, $value in $theme-colors {
   .toast-#{$color} {
-    @extend .alert-#{$color};
+    @include alert-variant(
+      theme-color-level($color, $alert-bg-level),
+      theme-color-level($color, $alert-border-level),
+      theme-color-level($color, $alert-color-level)
+    );
   }
 }
 
