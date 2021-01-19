@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from '../shared/services/auth.guard';
+import { FILES_PATH } from '../shared/constants';
 import { MainComponent } from './main.component';
 
 const routes: Routes = [
@@ -10,7 +11,8 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', pathMatch: 'full', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) } //
+      { path: '', pathMatch: 'full', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: FILES_PATH, loadChildren: () => import('./files/files.module').then(m => m.FilesModule) }
     ]
   }
 ];

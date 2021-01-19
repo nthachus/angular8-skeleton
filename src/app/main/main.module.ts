@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MainRoutingModule } from './main-routing.module';
+import { UserFileService } from './services/user-file.service';
 import { MainComponent } from './main.component';
 import { HeaderComponent } from './header/header.component';
 import { ToastsComponent } from './toasts/toasts.component';
@@ -23,7 +24,7 @@ import { ToastsComponent } from './toasts/toasts.component';
     TranslateModule,
     MainRoutingModule
   ],
-  // providers: [UserFileService],
+  providers: [UserFileService],
   exports: [MainComponent]
 })
 export class MainModule {}

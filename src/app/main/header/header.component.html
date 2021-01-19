@@ -1,31 +1,33 @@
 <header>
   <nav class="navbar navbar-expand navbar-light bg-light shadow-sm">
-    <a class="navbar-brand bigger-1 py-0" routerLink="/">
-      <img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="32" height="32" />
-    </a>
+    <div class="container">
+      <a class="navbar-brand bigger-1 py-0" routerLink="/">
+        <img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="32" height="32" />
+      </a>
 
-    <ul class="navbar-nav ml-auto">
-      <li ngbDropdown class="nav-item">
-        <button
-          ngbDropdownToggle
-          class="navbar-toggler"
-          id="navbarDropdownMain"
-          type="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          [attr.aria-label]="'MENU' | translate"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <ul class="navbar-nav ml-auto">
+        <li ngbDropdown class="nav-item">
+          <button
+            ngbDropdownToggle
+            class="navbar-toggler"
+            id="navbarDropdownMain"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            [attr.aria-label]="'MENU' | translate"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="navbarDropdownMain">
-          <a ngbDropdownItem routerLink="/account" translate>Profile</a>
-          <a ngbDropdownItem routerLink="/files" translate>My Files</a>
-          <div class="dropdown-divider"></div>
-          <a ngbDropdownItem [routerLink]="loginLink" (click)="logout()" translate>Logout</a>
-        </div>
-      </li>
-    </ul>
+          <div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="navbarDropdownMain">
+            <a ngbDropdownItem routerLink="/" translate>Profile</a>
+            <a ngbDropdownItem [routerLink]="filesLink" translate>My Files</a>
+            <div class="dropdown-divider"></div>
+            <a ngbDropdownItem [routerLink]="loginLink" (click)="logout()" translate>Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
   </nav>
 </header>
