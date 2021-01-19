@@ -1,3 +1,9 @@
 <main class="container">
   <h3>dashboard works!</h3>
+
+  <div uploadxDrop>
+    <label class="file-drop">
+      <input type="file" uploadx (state)="onUploading($event)" #files (click)="files.value = ''" />
+    </label>
+  </div>
 </main>
