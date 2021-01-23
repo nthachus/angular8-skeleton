@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 import { UploadxModule } from 'ngx-uploadx';
 
 import { DashboardComponent } from './dashboard.component';
@@ -9,7 +11,11 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [UploadxModule],
+      imports: [
+        HttpClientModule, //
+        TranslateModule.forRoot(),
+        UploadxModule
+      ],
       declarations: [DashboardComponent]
     }).compileComponents();
   }));

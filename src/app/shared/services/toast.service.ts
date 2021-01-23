@@ -40,7 +40,7 @@ export class ToastService {
   }
 
   showInfo(message: any, details?: any, options: ToastOptions = {}): void {
-    this.show(message, details, { className: 'toast-info', ...options });
+    this.show(message, details, { className: 'toast-primary', ...options });
   }
 
   showSuccess(message: any, details?: any, options: ToastOptions = {}): void {

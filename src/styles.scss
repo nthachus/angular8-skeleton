@@ -28,6 +28,7 @@ body {
   }
 }
 
+// Toasts
 @each $color, $value in $theme-colors {
   .toast-#{$color} {
     @include alert-variant(
@@ -38,8 +39,13 @@ body {
   }
 }
 
+// Progress bars
+.progress-lg {
+  height: 0.75rem;
+}
+
 /**
- * Utility classes
+ * Utilities
  */
 .smaller-1 {
   font-size: 96%;

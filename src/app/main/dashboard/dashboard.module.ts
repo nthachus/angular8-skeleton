@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { UploadxModule } from 'ngx-uploadx';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { FileSizePipe } from '../../shared/pipes/file-size.pipe';
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [
+    FileSizePipe, //
+    DashboardComponent
+  ],
   imports: [
     CommonModule, //
+    TranslateModule,
     UploadxModule,
     DashboardRoutingModule
   ]

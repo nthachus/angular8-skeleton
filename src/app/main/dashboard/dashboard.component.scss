@@ -1,0 +1,22 @@
+@import '~bootswatch/dist/cosmo/variables';
+
+.file-drop {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0.2rem dashed $gray-300;
+
+  .fa {
+    color: $gray-500;
+  }
+
+  input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 125px !important;
+    opacity: 0;
+    direction: ltr;
+    visibility: hidden;
+  }
+}

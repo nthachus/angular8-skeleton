@@ -8,5 +8,11 @@
   "MENU": "メニュー",
   "Profile": "プロフィール",
   "My Files": "私のファイル",
-  "Logout": "ログアウト"
+  "Logout": "ログアウト",
+  "Choose your files to upload": "アップロードするファイルを選択してください",
+  "Filename": "ファイル名",
+  "Size": "サイズ",
+  "Progress": "進捗",
+  "Status": "状況",
+  "Actions": "行動"
 }
