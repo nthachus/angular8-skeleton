@@ -39,9 +39,44 @@ body {
   }
 }
 
-// Progress bars
+// Progress Bars
 .progress-lg {
   height: 0.75rem;
+}
+
+// File Types
+.fa-folder-o,
+.fa-folder-open-o {
+  background-color: #f7ea8e;
+}
+.fa-folder,
+.fa-folder-open {
+  color: #f7ea8e;
+}
+
+.fa-file-word-o {
+  color: #2a5596;
+}
+.fa-file-excel-o {
+  color: #207245;
+}
+.fa-file-powerpoint-o {
+  color: #cb4a32;
+}
+.fa-file-pdf-o {
+  color: #db2224;
+}
+.fa-file-image-o {
+  color: #808080;
+}
+.fa-file-archive-o {
+  color: #9a6e1f;
+}
+.fa-file-audio-o {
+  color: #2077b8;
+}
+.fa-file-video-o {
+  color: #8c3cca;
 }
 
 /**

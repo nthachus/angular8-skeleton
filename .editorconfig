@@ -25,7 +25,8 @@ keep_simple_methods_in_one_line = true
 # noinspection EditorConfigKeyCorrectness
 [*.{htm,html}]
 method_call_chain_wrap = normal
-html_space_inside_empty_tag = true
+space_inside_empty_tag = true
+do_not_indent_children_of_tags = html
 
 # noinspection EditorConfigKeyCorrectness
 [*.{css,scss}]
@@ -36,5 +37,5 @@ blank_lines_around_nested_selector = 0
 # noinspection EditorConfigKeyCorrectness
 [*.svg]
 max_line_length = 16384
-xml_attribute_wrap = off
-xml_space_inside_empty_tag = true
+attribute_wrap = off
+space_inside_empty_tag = true

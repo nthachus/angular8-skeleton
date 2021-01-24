@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Tus, UploadAction, Uploader, UploadxOptions, UploadxService, UploadState } from 'ngx-uploadx';
+import { Tus, UploadAction, Uploader, UploadState, UploadxOptions, UploadxService } from 'ngx-uploadx';
 
 import { environment } from '../../../environments/environment';
 import { Logger } from '../../shared/logger';
@@ -12,10 +12,11 @@ import { AuthService } from '../../shared/services/auth.service';
 })
 export class DashboardComponent implements OnInit {
   readonly uploads$: Observable<Uploader[]>;
+  totalProgress: number;
 
   private uploadOptions: UploadxOptions = {
     endpoint: `${environment.apiBaseUrl}upload`,
-    autoUpload: true,
+    autoUpload: false,
     chunkSize: 1048576, // 1MB
     // retryConfig: { maxAttempts: 5 },
     token: AuthService.currentToken as () => string, // Bearer token
@@ -28,8 +29,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onUploading(state: UploadState): void {
+  onUpload(state: UploadState): void {
     Logger.log(state);
+    this.totalProgress = 0;
   }
 
   processUpload(action: UploadAction, uploadId?: string): void {

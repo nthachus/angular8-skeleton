@@ -5,11 +5,13 @@ import { UploadxModule } from 'ngx-uploadx';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { FileSizePipe } from '../../shared/pipes/file-size.pipe';
+import { FileTypePipe } from '../../shared/pipes/file-type.pipe';
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
   declarations: [
     FileSizePipe, //
+    FileTypePipe,
     DashboardComponent
   ],
   imports: [
