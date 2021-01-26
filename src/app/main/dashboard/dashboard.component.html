@@ -3,7 +3,7 @@
     <label class="file-drop d-block text-center py-3">
       <i class="fa fa-cloud-upload fa-5x"></i>
       <b class="d-block mb-2" translate>Choose your files to upload</b>
-      <input type="file" uploadx (state)="onUpload($event)" #files (click)="files.value = ''" />
+      <input type="file" [uploadx]="uploadOptions" (state)="onUpload($event)" #files (click)="files.value = ''" />
     </label>
   </div>
 
@@ -20,9 +20,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of (uploads$ | async)!">
+        <tr *ngFor="let item of uploadService.queue">
           <td>
-            <i [class]="'fa fa-lg fa-fw fa-file' + ((item.name | fileType: '-') || '') + '-o'"></i>
+            <i [class]="'fa fa-lg fa-fw fa-file' + (item.name | fileType: '-') + '-o'"></i>
           </td>
           <td>{{ item.name }}</td>
           <td class="text-nowrap">{{ item.size | fileSize }}</td>
@@ -39,13 +39,13 @@
             </div>
           </td>
           <td>{{ item.status }}</td>
-          <td class="small">
+          <td class="small text-nowrap">
             <button
               type="button"
               class="btn py-0 px-1 btn-success"
               [attr.aria-label]="'Upload' | translate"
               (click)="item.status = 'queue'"
-              [disabled]="item.status != 'added'"
+              [disabled]="item.status != 'added' && item.status != 'paused'"
             >
               <i class="fa fa-upload fa-fw" aria-hidden="true"></i>
             </button>
@@ -58,6 +58,15 @@
               [disabled]="item.status != 'uploading'"
             >
               <i class="fa fa-ban fa-fw" aria-hidden="true"></i>
+            </button>
+            <i>&nbsp;</i>
+            <button
+              type="button"
+              class="btn py-0 px-1 btn-danger"
+              [attr.aria-label]="'Cancel' | translate"
+              (click)="processUpload('cancel', item.uploadId)"
+            >
+              <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
             </button>
           </td>
         </tr>
@@ -78,17 +87,17 @@
     </div>
 
     <p>
-      <button type="button" class="btn btn-primary" (click)="processUpload('upload')">
+      <button type="button" class="btn btn-primary" (click)="processUpload('upload')" [disabled]="!hasUploadState('added', 'paused')">
         <i class="fa fa-upload" aria-hidden="true">&nbsp;</i>
         <span translate>Upload All</span>
       </button>
       <i>&nbsp;&nbsp;</i>
-      <button type="button" class="btn btn-secondary" (click)="processUpload('pause')">
+      <button type="button" class="btn btn-secondary" (click)="processUpload('pause')" [disabled]="!hasUploadState('uploading')">
         <i class="fa fa-ban" aria-hidden="true">&nbsp;</i>
         <span translate>Pause All</span>
       </button>
       <i>&nbsp;&nbsp;</i>
-      <button type="button" class="btn btn-warning" (click)="processUpload('cancel')">
+      <button type="button" class="btn btn-warning" (click)="processUpload('cancel')" [disabled]="!hasUploadState()">
         <i class="fa fa-trash" aria-hidden="true">&nbsp;</i>
         <span translate>Cancel All</span>
       </button>

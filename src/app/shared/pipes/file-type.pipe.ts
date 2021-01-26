@@ -15,10 +15,10 @@ export class FileTypePipe implements PipeTransform {
     text: /^txt|csv$/
   };
 
-  transform(filename: string, prepend: string = ''): string | null {
+  transform(filename: any, prepend: string = ''): string | null {
     let ext: string | null = null;
     if (filename) {
-      const i = filename.lastIndexOf('.');
+      const i = (filename = `${filename}`).lastIndexOf('.');
       if (i >= 0) {
         ext = filename.substr(i + 1);
       }
@@ -34,6 +34,6 @@ export class FileTypePipe implements PipeTransform {
       }
     }
 
-    return null;
+    return !prepend ? null : '';
   }
 }

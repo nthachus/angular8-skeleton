@@ -14,5 +14,11 @@
   "Size": "サイズ",
   "Progress": "進捗",
   "Status": "状況",
-  "Actions": "行動"
+  "Actions": "行動",
+  "Upload": "アップロード",
+  "Pause": "休止",
+  "Cancel": "キャンセル",
+  "Upload All": "すべてアップロード",
+  "Pause All": "すべて一時停止",
+  "Cancel All": "すべてキャンセル"
 }

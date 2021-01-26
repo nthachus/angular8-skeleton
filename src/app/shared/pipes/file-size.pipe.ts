@@ -9,7 +9,7 @@ export class FileSizePipe implements PipeTransform {
     ['Bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
   ];
 
-  transform(sizeInBytes: number | string, precision: number = 2, formatType: number = 0): string | null {
+  transform(sizeInBytes: any, precision: number = 2, formatType: number = 0): string | null {
     if (!sizeInBytes) {
       return null;
     }
