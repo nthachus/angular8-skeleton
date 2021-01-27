@@ -1,3 +1,36 @@
 <main class="container">
-  <h4>files works!</h4>
+  <h4 class="mt-4" translate>My Files</h4>
+
+  <div class="table-responsive mb-4">
+    <table class="table table-sm border-bottom">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">&nbsp;</th>
+          <th scope="col" class="w-50" translate>Filename</th>
+          <th scope="col" translate>Size</th>
+          <th scope="col" translate>Date</th>
+          <th scope="col" translate>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of fileList">
+          <td>
+            <i [class]="'fa fa-lg fa-fw fa-file' + (item.name | fileType: '-') + '-o'"></i>
+          </td>
+          <td>{{ item.name }}</td>
+          <td class="text-nowrap">{{ item.size | fileSize }}</td>
+          <td class="text-nowrap">{{ item.updated_at }}</td>
+          <td class="small text-nowrap">
+            <a class="btn py-0 px-1 btn-primary" role="button" [attr.href]="downloadLink(item)" [attr.aria-label]="'Download' | translate">
+              <i class="fa fa-download fa-fw" aria-hidden="true"></i>
+            </a>
+            <i>&nbsp;</i>
+            <button type="button" class="btn py-0 px-1 btn-danger" [attr.aria-label]="'Delete' | translate" (click)="deleteFile(item)">
+              <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </main>

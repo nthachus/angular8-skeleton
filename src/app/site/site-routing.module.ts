@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LOGIN_PATH } from '../shared/constants';
+import { LOGIN_ROUTE } from '../shared/constants';
 import { SiteComponent } from './site.component';
 
 const routes: Routes = [
@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '',
     component: SiteComponent,
     children: [
-      { path: LOGIN_PATH, loadChildren: () => import('./login/login.module').then(m => m.LoginModule) } //
+      { path: LOGIN_ROUTE, loadChildren: () => import('./login/login.module').then(m => m.LoginModule) } //
     ]
   }
 ];

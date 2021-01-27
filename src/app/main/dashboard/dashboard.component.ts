@@ -4,6 +4,7 @@ import { Tus, UploadAction, UploadState, UploadStatus, UploadxOptions, UploadxSe
 import { environment } from '../../../environments/environment';
 import { Logger } from '../../shared/logger';
 import { AuthService } from '../../shared/services/auth.service';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   templateUrl: './dashboard.component.html',
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
     uploaderClass: Tus
   };
 
-  constructor(readonly uploadService: UploadxService) {}
+  constructor(readonly uploadService: UploadxService, private toastService: ToastService) {}
 
   ngOnInit(): void {}
 
@@ -38,6 +39,10 @@ export class DashboardComponent implements OnInit {
     if (state.status === 'added') {
       this.removeDuplicatedUpload(state.uploadId);
     } else {
+      if (state.status === 'error') {
+        this.handleUploadError(state);
+      }
+
       this.calculateUploadProgress();
     }
   }
@@ -78,6 +83,10 @@ export class DashboardComponent implements OnInit {
 
     Logger.info('removeDuplicatedUpload', uploadId, i);
     this.uploadService.queue.splice(i, 1);
+  }
+
+  private handleUploadError(state: UploadState): void {
+    this.toastService.showWarning(state.response);
   }
 
   private calculateUploadProgress(): void {

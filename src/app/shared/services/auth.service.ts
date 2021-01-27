@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { LOGIN_LINK, LOGIN_LINK_RE, TOKEN_KEY } from '../constants';
+import { IS_LOGIN_URL, LOGIN_LINK, TOKEN_KEY } from '../constants';
 import { Logger } from '../logger';
 
 export interface TokenData {
@@ -118,7 +118,7 @@ export class AuthService {
       const returnUrl = (state || redirect.routerState.snapshot).url;
       Logger.info('logout', returnUrl);
 
-      if (!LOGIN_LINK_RE.test(returnUrl)) {
+      if (!IS_LOGIN_URL.test(returnUrl)) {
         redirect.navigate([LOGIN_LINK], { queryParams: { returnUrl } }).then(ok => Logger.info('logged-out', ok));
       }
     }
