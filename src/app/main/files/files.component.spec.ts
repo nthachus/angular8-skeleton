@@ -2,8 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { FileSizePipe } from '../../shared/pipes/file-size.pipe';
-import { FileTypePipe } from '../../shared/pipes/file-type.pipe';
+import { SharedModule } from '../../shared/shared.module';
 import { UserFileService } from '../services/user-file.service';
 import { FilesComponent } from './files.component';
 
@@ -13,9 +12,9 @@ describe('FilesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, TranslateModule.forRoot()],
+      imports: [HttpClientModule, TranslateModule.forRoot(), SharedModule],
       providers: [UserFileService],
-      declarations: [FileSizePipe, FileTypePipe, FilesComponent]
+      declarations: [FilesComponent]
     }).compileComponents();
   }));
 

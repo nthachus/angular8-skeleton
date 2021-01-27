@@ -12,7 +12,7 @@ import { UserFile, UserFileService } from '../services/user-file.service';
 })
 export class FilesComponent implements OnInit {
   fileList: UserFile[];
-  private tokenParam: string;
+  private readonly tokenParam: string;
 
   constructor(private fileService: UserFileService) {
     this.tokenParam = encodeURIComponent(AuthService.currentToken() || '');

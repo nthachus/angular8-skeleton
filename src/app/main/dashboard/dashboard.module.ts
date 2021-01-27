@@ -4,20 +4,16 @@ import { TranslateModule } from '@ngx-translate/core';
 import { UploadxModule } from 'ngx-uploadx';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { FileSizePipe } from '../../shared/pipes/file-size.pipe';
-import { FileTypePipe } from '../../shared/pipes/file-type.pipe';
+import { SharedModule } from '../../shared/shared.module';
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
-  declarations: [
-    FileSizePipe, //
-    FileTypePipe,
-    DashboardComponent
-  ],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule, //
     TranslateModule,
     UploadxModule,
+    SharedModule,
     DashboardRoutingModule
   ]
 })

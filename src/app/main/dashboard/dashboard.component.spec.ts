@@ -3,8 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { UploadxModule } from 'ngx-uploadx';
 
-import { FileSizePipe } from '../../shared/pipes/file-size.pipe';
-import { FileTypePipe } from '../../shared/pipes/file-type.pipe';
+import { SharedModule } from '../../shared/shared.module';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
@@ -13,8 +12,13 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, TranslateModule.forRoot(), UploadxModule],
-      declarations: [FileSizePipe, FileTypePipe, DashboardComponent]
+      imports: [
+        HttpClientModule, //
+        TranslateModule.forRoot(),
+        UploadxModule,
+        SharedModule
+      ],
+      declarations: [DashboardComponent]
     }).compileComponents();
   }));
 
