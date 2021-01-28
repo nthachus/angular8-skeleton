@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { registerLocaleData } from '@angular/common';
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 
 import { environment } from '../environments/environment';
@@ -54,4 +55,20 @@ export function jwtOptionsFactory() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    this.registerLocales();
+  }
+
+  private registerLocales(): void {
+    for (const lang of environment.languages) {
+      import(
+        /* webpackInclude: /(en|ja)\.js$/ */
+        /* webpackExclude: /extra/ */
+        /* webpackMode: "lazy-once" */
+        /* webpackChunkName: "i18n" */
+        `@angular/common/locales/${lang}`
+      ).then(m => registerLocaleData(m.default));
+    }
+  }
+}

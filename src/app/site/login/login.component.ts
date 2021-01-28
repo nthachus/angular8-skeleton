@@ -12,6 +12,7 @@ import { AuthService, TokenData } from '../../shared/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   errorMessage: string | null; // TODO: private set
+  isLoading: boolean;
   private returnUrl: string;
 
   constructor(
@@ -36,9 +37,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    if (!f.valid) {
+    if (!f.valid || this.isLoading) {
       return;
     }
+    this.isLoading = true;
 
     this.authService.login(f.value.loginId, f.value.password).subscribe(
       (user: TokenData) => {
@@ -49,6 +51,9 @@ export class LoginComponent implements OnInit {
         // If username or password is incorrect
         f.resetForm();
         this.errorMessage = err.error.message || err.error || err.message;
+      },
+      () => {
+        this.isLoading = false;
       }
     );
   }

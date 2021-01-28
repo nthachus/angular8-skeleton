@@ -1,7 +1,7 @@
 <main class="container">
-  <h4 class="mt-4" translate>My Files</h4>
+  <h4 class="mt-4 py-1" translate>My Files</h4>
 
-  <div class="table-responsive mb-4">
+  <div class="table-responsive mb-3">
     <table class="table table-sm border-bottom">
       <thead class="thead-light">
         <tr>
@@ -19,13 +19,26 @@
           </td>
           <td>{{ item.name }}</td>
           <td class="text-nowrap">{{ item.size | fileSize }}</td>
-          <td class="text-nowrap">{{ item.updated_at }}</td>
+          <td class="text-nowrap">{{ item.updated_at | date: "short":undefined:translate.currentLang }}</td>
           <td class="small text-nowrap">
-            <a class="btn py-0 px-1 btn-primary" role="button" [attr.href]="downloadLink(item)" [attr.aria-label]="'Download' | translate">
+            <a
+              class="btn py-0 px-1 btn-primary"
+              role="button"
+              [attr.href]="downloadLink(item)"
+              target="_blank"
+              [attr.aria-label]="'Download' | translate"
+              [title]="'Download' | translate"
+            >
               <i class="fa fa-download fa-fw" aria-hidden="true"></i>
             </a>
             <i>&nbsp;</i>
-            <button type="button" class="btn py-0 px-1 btn-danger" [attr.aria-label]="'Delete' | translate" (click)="deleteFile(item)">
+            <button
+              type="button"
+              class="btn py-0 px-1 btn-danger"
+              [attr.aria-label]="'Delete' | translate"
+              [title]="'Delete' | translate"
+              (click)="deleteFile(item)"
+            >
               <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
             </button>
           </td>

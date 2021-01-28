@@ -1,4 +1,4 @@
-<main class="container py-1">
+<main class="container pt-1">
   <div uploadxDrop class="bg-light h5 my-4">
     <label class="file-drop d-block text-center py-3">
       <i class="fa fa-cloud-upload fa-5x"></i>
@@ -44,6 +44,7 @@
               type="button"
               class="btn py-0 px-1 btn-success"
               [attr.aria-label]="'Upload' | translate"
+              [title]="'Upload' | translate"
               (click)="item.status = 'queue'"
               [disabled]="item.status != 'added' && item.status != 'paused'"
             >
@@ -54,6 +55,7 @@
               type="button"
               class="btn py-0 px-1 btn-secondary"
               [attr.aria-label]="'Pause' | translate"
+              [title]="'Pause' | translate"
               (click)="item.status = 'paused'"
               [disabled]="item.status != 'uploading'"
             >
@@ -64,6 +66,7 @@
               type="button"
               class="btn py-0 px-1 btn-danger"
               [attr.aria-label]="'Cancel' | translate"
+              [title]="'Cancel' | translate"
               (click)="processUpload('cancel', item.uploadId)"
             >
               <i class="fa fa-trash fa-fw" aria-hidden="true"></i>

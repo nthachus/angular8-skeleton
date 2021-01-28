@@ -86,7 +86,14 @@ export class DashboardComponent implements OnInit {
   }
 
   private handleUploadError(state: UploadState): void {
-    this.toastService.showWarning(state.response);
+    let res = state.response;
+    try {
+      res = JSON.parse(res);
+    } catch (e) {
+      Logger.warn(e);
+    }
+
+    this.toastService.showWarning(res.message || res, res.details);
   }
 
   private calculateUploadProgress(): void {

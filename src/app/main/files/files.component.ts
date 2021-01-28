@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '../../../environments/environment';
 import { Logger } from '../../shared/logger';
@@ -14,7 +15,7 @@ export class FilesComponent implements OnInit {
   fileList: UserFile[];
   private readonly tokenParam: string;
 
-  constructor(private fileService: UserFileService) {
+  constructor(readonly translate: TranslateService, private fileService: UserFileService) {
     this.tokenParam = encodeURIComponent(AuthService.currentToken() || '');
   }
 
@@ -35,6 +36,7 @@ export class FilesComponent implements OnInit {
 
   deleteFile(file: UserFile): void {
     Logger.log('deleteFile', file);
+    // TODO confirm(this.translate.instant('Are you sure to delete the file? {{value}}', { value: file.name }))
 
     const i = this.fileList.indexOf(file);
     if (i >= 0) {
