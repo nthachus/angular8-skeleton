@@ -36,4 +36,8 @@ export class UserFileService {
       })
     );
   }
+
+  delete(fileId: number): Observable<any> {
+    return this.http.delete<any>(`${environment.apiBaseUrl}file/${fileId}`);
+  }
 }

@@ -11,6 +11,7 @@ services:
       - 4200:4200
     depends_on:
       - api-dev
+      - cron-dev
     command: /bin/sh -c "
       yarn --no-bin-links && yarn cache clean
       && yarn format -c && yarn lint
@@ -21,7 +22,7 @@ services:
 
   web-prod:
     image: "nginx:alpine"
-    container_name: skeleton-dist
+    container_name: skeleton-web
     volumes:
       - "../angular8-skeleton/dist/ng8-skeleton:/var/www/html"
       - "../sinatra-rest-skeleton/spec/fixtures/nginx_data:/etc/nginx/data:ro"
@@ -31,6 +32,7 @@ services:
       - 443:443
     depends_on:
       - api-prod
+      - cron-prod
     command: /bin/sh -c "
       [ -f /var/www/html/index.html ]
       && mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak

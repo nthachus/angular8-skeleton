@@ -36,11 +36,16 @@ export class FilesComponent implements OnInit {
 
   deleteFile(file: UserFile): void {
     Logger.log('deleteFile', file);
-    // TODO confirm(this.translate.instant('Are you sure to delete the file? {{value}}', { value: file.name }))
 
     const i = this.fileList.indexOf(file);
-    if (i >= 0) {
-      this.fileList.splice(i, 1);
+    if (i < 0) {
+      return;
     }
+
+    this.translate.get('Are you sure to delete the file? {{value}}', { value: file.name }).subscribe(s => {
+      if (confirm(s)) {
+        this.fileService.delete(file.id).subscribe(() => this.fileList.splice(i, 1));
+      }
+    });
   }
 }
