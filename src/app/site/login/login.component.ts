@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
 
 import { FORCED_LOGOUT, LOGOUT_CAUSE } from '../../shared/constants';
 import { Logger } from '../../shared/logger';
@@ -13,7 +14,6 @@ import { AuthService, TokenData } from '../../shared/services/auth.service';
 export class LoginComponent implements OnInit {
   errorMessage: string | null; // TODO: private set
   isLoading: boolean;
-  private returnUrl: string;
 
   constructor(
     private router: Router, //
@@ -22,8 +22,6 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl;
-
     // Is already logged-in?
     const data = this.authService.tokenData;
     if (data) {
@@ -42,20 +40,24 @@ export class LoginComponent implements OnInit {
     }
     this.isLoading = true;
 
-    this.authService.login(f.value.loginId, f.value.password).subscribe(
-      (user: TokenData) => {
-        // TODO: if (!user) Invalid token?
-        this.onLoggedIn(user);
-      },
-      err => {
-        // If username or password is incorrect
-        f.resetForm();
-        this.errorMessage = err.error.message || err.error || err.message;
-      },
-      () => {
-        this.isLoading = false;
-      }
-    );
+    this.authService
+      .login(f.value.loginId, f.value.password)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe(
+        (user: TokenData) => {
+          // TODO: if (!user) Invalid token?
+          this.onLoggedIn(user);
+        },
+        err => {
+          // If username or password is incorrect
+          f.resetForm();
+          this.errorMessage = err.error.message || err.error || err.message;
+        }
+      );
   }
 
   private tryLoginWithSsl(): void {
@@ -76,11 +78,13 @@ export class LoginComponent implements OnInit {
   }
 
   private onLoggedIn(data: TokenData) {
-    localStorage.removeItem(FORCED_LOGOUT);
+    this.route.queryParamMap.subscribe(params => {
+      localStorage.removeItem(FORCED_LOGOUT);
 
-    const redirectUrl = this.returnUrl || '/';
-    Logger.info('onLoggedIn', data, redirectUrl);
+      const redirectUrl = params.get('returnUrl') || '/';
+      Logger.info('onLoggedIn', data, redirectUrl);
 
-    this.router.navigate([redirectUrl]).then(ok => Logger.info('onLoggedIn', ok));
+      this.router.navigate([redirectUrl]).then(ok => Logger.info('onLoggedIn', ok));
+    });
   }
 }

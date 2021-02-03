@@ -22,6 +22,7 @@
           <td class="text-nowrap">{{ item.updated_at | date: "short":undefined:translate.currentLang }}</td>
           <td class="small text-nowrap">
             <a
+              *ngIf="!item.deleted_at"
               class="btn py-0 px-1 btn-primary"
               role="button"
               [attr.href]="downloadLink(item)"
@@ -31,6 +32,16 @@
             >
               <i class="fa fa-download fa-fw" aria-hidden="true"></i>
             </a>
+            <button
+              *ngIf="!!item.deleted_at"
+              type="button"
+              class="btn py-0 px-1 btn-success"
+              [attr.aria-label]="'Undelete' | translate"
+              [title]="'Undelete' | translate"
+              (click)="undeleteFile(item)"
+            >
+              <i class="fa fa-undo fa-fw" aria-hidden="true"></i>
+            </button>
             <i>&nbsp;</i>
             <button
               type="button"

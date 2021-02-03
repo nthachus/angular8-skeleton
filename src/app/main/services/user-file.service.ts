@@ -14,6 +14,7 @@ export interface UserFile {
   extra: Record<string, any>;
   created_at: string;
   updated_at: string;
+  deleted_at?: string;
 }
 
 export interface SearchResult {
@@ -25,8 +26,8 @@ export interface SearchResult {
 export class UserFileService {
   constructor(private http: HttpClient) {}
 
-  search(): Observable<SearchResult> {
-    return this.http.get<any>(`${environment.apiBaseUrl}file/search`).pipe(
+  search(trash: boolean = false): Observable<SearchResult> {
+    return this.http.get<any>(`${environment.apiBaseUrl}file/search${trash ? '?deleted' : ''}`).pipe(
       map(res => {
         if (!res || !res.files) {
           throw res;
@@ -39,5 +40,9 @@ export class UserFileService {
 
   delete(fileId: number): Observable<any> {
     return this.http.delete<any>(`${environment.apiBaseUrl}file/${fileId}`);
+  }
+
+  undelete(fileId: number): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}file/${fileId}/undelete`);
   }
 }

@@ -19,7 +19,7 @@ export class MediaTypePipe implements PipeTransform {
 
   transform(mimeType: any, prepend: string = ''): string | null {
     if (mimeType) {
-      mimeType = mimeType.toLowerCase();
+      mimeType = `${mimeType}`.toLowerCase();
 
       for (const [type, pattern] of Object.entries(MediaTypePipe.MIME_MAP)) {
         if (pattern.test(mimeType)) {
