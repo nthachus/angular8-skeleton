@@ -43,6 +43,6 @@ export class UserFileService {
   }
 
   undelete(fileId: number): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}file/${fileId}/undelete`);
+    return this.http.post<any>(`${environment.apiBaseUrl}file/${fileId}/undelete`, null);
   }
 }

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+
+import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 import { FORCED_LOGOUT, LOGOUT_CAUSE } from '../../shared/constants';
@@ -11,9 +13,12 @@ import { AuthService, TokenData } from '../../shared/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   errorMessage: string | null; // TODO: private set
   isLoading: boolean;
+
+  private returnUrl: string | null;
+  private queryParamSub: Subscription;
 
   constructor(
     private router: Router, //
@@ -22,16 +27,24 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Is already logged-in?
-    const data = this.authService.tokenData;
-    if (data) {
-      this.onLoggedIn(data);
-    } else if (!localStorage.getItem(FORCED_LOGOUT)) {
-      // Auto-login with client SSL
-      this.tryLoginWithSsl();
-    } else {
-      this.initLayout();
-    }
+    this.queryParamSub = this.route.queryParamMap.subscribe(params => {
+      this.returnUrl = params.get('returnUrl');
+
+      // Is already logged-in?
+      const data = this.authService.tokenData;
+      if (data) {
+        this.onLoggedIn(data);
+      } else if (!localStorage.getItem(FORCED_LOGOUT)) {
+        // Auto-login with client SSL
+        this.tryLoginWithSsl();
+      } else {
+        this.initLayout();
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.queryParamSub.unsubscribe();
   }
 
   onSubmit(f: NgForm) {
@@ -78,13 +91,11 @@ export class LoginComponent implements OnInit {
   }
 
   private onLoggedIn(data: TokenData) {
-    this.route.queryParamMap.subscribe(params => {
-      localStorage.removeItem(FORCED_LOGOUT);
+    localStorage.removeItem(FORCED_LOGOUT);
 
-      const redirectUrl = params.get('returnUrl') || '/';
-      Logger.info('onLoggedIn', data, redirectUrl);
+    const redirectUrl = this.returnUrl || '/';
+    Logger.info('onLoggedIn', data, redirectUrl);
 
-      this.router.navigate([redirectUrl]).then(ok => Logger.info('onLoggedIn', ok));
-    });
+    this.router.navigateByUrl(redirectUrl).then(ok => Logger.info('onLoggedIn', ok));
   }
 }

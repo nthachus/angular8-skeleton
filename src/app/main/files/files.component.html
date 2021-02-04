@@ -1,5 +1,9 @@
 <main class="container">
-  <h4 class="mt-4 py-1" translate>My Files</h4>
+  <h4 class="mt-4 py-1">
+    <span *ngIf="isTrash; then trashTitle; else fileTitle"></span>
+    <ng-template #trashTitle><span translate>Trash</span></ng-template>
+    <ng-template #fileTitle><span translate>My Files</span></ng-template>
+  </h4>
 
   <div class="table-responsive mb-3">
     <table class="table table-sm border-bottom">
@@ -21,27 +25,33 @@
           <td class="text-nowrap">{{ item.size | fileSize }}</td>
           <td class="text-nowrap">{{ item.updated_at | date: "short":undefined:translate.currentLang }}</td>
           <td class="small text-nowrap">
-            <a
-              *ngIf="!item.deleted_at"
-              class="btn py-0 px-1 btn-primary"
-              role="button"
-              [attr.href]="downloadLink(item)"
-              target="_blank"
-              [attr.aria-label]="'Download' | translate"
-              [title]="'Download' | translate"
-            >
-              <i class="fa fa-download fa-fw" aria-hidden="true"></i>
-            </a>
-            <button
-              *ngIf="!!item.deleted_at"
-              type="button"
-              class="btn py-0 px-1 btn-success"
-              [attr.aria-label]="'Undelete' | translate"
-              [title]="'Undelete' | translate"
-              (click)="undeleteFile(item)"
-            >
-              <i class="fa fa-undo fa-fw" aria-hidden="true"></i>
-            </button>
+            <span *ngIf="!item.deleted_at; then fileActions; else trashActions"></span>
+            <ng-template #fileActions>
+              <a
+                class="btn py-0 px-1 btn-primary"
+                role="button"
+                [attr.href]="downloadLink(item)"
+                target="_blank"
+                [attr.aria-label]="'Download' | translate"
+                [title]="'Download' | translate"
+              >
+                <i class="fa fa-download fa-fw" aria-hidden="true"></i>
+              </a>
+            </ng-template>
+
+            <ng-template #trashActions>
+              <button
+                *ngIf="!!item.deleted_at"
+                type="button"
+                class="btn py-0 px-1 btn-success"
+                [attr.aria-label]="'Undelete' | translate"
+                [title]="'Undelete' | translate"
+                (click)="undeleteFile(item)"
+              >
+                <i class="fa fa-undo fa-fw" aria-hidden="true"></i>
+              </button>
+            </ng-template>
+
             <i>&nbsp;</i>
             <button
               type="button"

@@ -25,7 +25,7 @@
               <i class="fa fa-sitemap fa-fw bigger-2" aria-hidden="true">&nbsp;</i>
               <span translate>My Files</span>
             </a>
-            <a ngbDropdownItem [routerLink]="[filesLink, { trash: true }]">
+            <a ngbDropdownItem [routerLink]="filesLink" [queryParams]="{ trash: true }">
               <i class="fa fa-trash-o fa-fw bigger-2" aria-hidden="true">&nbsp;</i>
               <span translate>Trash</span>
             </a>

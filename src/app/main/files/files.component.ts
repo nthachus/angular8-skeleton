@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
+import { Subscription } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { Logger } from '../../shared/logger';
@@ -11,9 +13,12 @@ import { UserFile, UserFileService } from '../services/user-file.service';
   templateUrl: './files.component.html',
   styleUrls: ['./files.component.scss']
 })
-export class FilesComponent implements OnInit {
+export class FilesComponent implements OnInit, OnDestroy {
   fileList: UserFile[];
+  isTrash: boolean;
+
   private readonly tokenParam: string;
+  private queryParamSub: Subscription;
 
   constructor(
     private route: ActivatedRoute, //
@@ -24,8 +29,10 @@ export class FilesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe(params => {
-      this.fileService.search(params.has('trash')).subscribe(
+    this.queryParamSub = this.route.queryParamMap.subscribe(params => {
+      this.isTrash = params.has('trash');
+
+      this.fileService.search(this.isTrash).subscribe(
         data => {
           this.fileList = data.files;
         },
@@ -34,6 +41,10 @@ export class FilesComponent implements OnInit {
         }
       );
     });
+  }
+
+  ngOnDestroy(): void {
+    this.queryParamSub.unsubscribe();
   }
 
   downloadLink(file: UserFile): string {
