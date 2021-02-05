@@ -17,19 +17,17 @@ export class FilesComponent implements OnInit, OnDestroy {
   fileList: UserFile[];
   isTrash: boolean;
 
-  private readonly tokenParam: string;
-  private queryParamSub: Subscription;
+  private tokenParam: string;
+  private routerSub: Subscription;
 
   constructor(
     private route: ActivatedRoute, //
     readonly translate: TranslateService,
     private fileService: UserFileService
-  ) {
-    this.tokenParam = encodeURIComponent(AuthService.currentToken() || '');
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.queryParamSub = this.route.queryParamMap.subscribe(params => {
+    this.routerSub = this.route.queryParamMap.subscribe(params => {
       this.isTrash = params.has('trash');
 
       this.fileService.search(this.isTrash).subscribe(
@@ -44,10 +42,14 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.queryParamSub.unsubscribe();
+    this.routerSub.unsubscribe();
   }
 
   downloadLink(file: UserFile): string {
+    if (!this.tokenParam && this.tokenParam !== '') {
+      this.tokenParam = encodeURIComponent(AuthService.currentToken() || '');
+    }
+
     return `${environment.apiBaseUrl}file/${file.id}/download?token=${this.tokenParam}`;
   }
 

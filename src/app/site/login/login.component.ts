@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   isLoading: boolean;
 
   private returnUrl: string | null;
-  private queryParamSub: Subscription;
+  private routerSub: Subscription;
 
   constructor(
     private router: Router, //
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.queryParamSub = this.route.queryParamMap.subscribe(params => {
+    this.routerSub = this.route.queryParamMap.subscribe(params => {
       this.returnUrl = params.get('returnUrl');
 
       // Is already logged-in?
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.queryParamSub.unsubscribe();
+    this.routerSub.unsubscribe();
   }
 
   onSubmit(f: NgForm) {

@@ -8,6 +8,10 @@ export class Logger {
     }
   }
 
+  static debug(...args: any[]): void {
+    Logger.log(...args);
+  }
+
   static info(...args: any[]): void {
     if (!environment.production) {
       console.info(...args);

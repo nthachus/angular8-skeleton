@@ -1,6 +1,6 @@
 <main class="container">
   <h4 class="mt-4 py-1">
-    <span *ngIf="isTrash; then trashTitle; else fileTitle"></span>
+    <ng-container *ngIf="isTrash; then trashTitle; else fileTitle"></ng-container>
     <ng-template #trashTitle><span translate>Trash</span></ng-template>
     <ng-template #fileTitle><span translate>My Files</span></ng-template>
   </h4>
@@ -25,7 +25,7 @@
           <td class="text-nowrap">{{ item.size | fileSize }}</td>
           <td class="text-nowrap">{{ item.updated_at | date: "short":undefined:translate.currentLang }}</td>
           <td class="small text-nowrap">
-            <span *ngIf="!item.deleted_at; then fileActions; else trashActions"></span>
+            <ng-container *ngIf="!item.deleted_at; then fileActions; else trashActions"></ng-container>
             <ng-template #fileActions>
               <a
                 class="btn py-0 px-1 btn-primary"
