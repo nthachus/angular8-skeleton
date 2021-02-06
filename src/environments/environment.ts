@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiBaseUrl: 'api/v1/',
-  languages: ['ja', 'en'],
+  languages: ['en', 'ja'],
   defaultLanguage: 'en',
   sessionTimeout: 900
 };

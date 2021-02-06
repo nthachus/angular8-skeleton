@@ -3,7 +3,7 @@
 export const environment = {
   production: true,
   apiBaseUrl: 'api/v1/',
-  languages: ['ja', 'en'],
-  defaultLanguage: 'ja',
+  languages: ['en', 'ja'],
+  defaultLanguage: 'en',
   sessionTimeout: 7200
 };
