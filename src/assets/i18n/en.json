@@ -1,4 +1,5 @@
 {
   "Session token has expired.": "The session has timed out.",
-  "Filename": "Name"
+  "Filename": "Name",
+  "Are you sure you want to delete this file?": "Are you sure to delete the file? {{value}}"
 }

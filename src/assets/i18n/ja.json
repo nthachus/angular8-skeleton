@@ -25,5 +25,5 @@
   "Date": "日時",
   "Download": "ダウンロード",
   "Delete": "削除",
-  "Are you sure to delete the file? {{value}}": "ファイルを削除してもよろしいですか？ {{value}}"
+  "Are you sure you want to delete this file?": "ファイルを削除してもよろしいですか？ {{value}}"
 }

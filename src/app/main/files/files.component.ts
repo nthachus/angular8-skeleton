@@ -61,7 +61,7 @@ export class FilesComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.translate.get('Are you sure to delete the file? {{value}}', { value: file.name }).subscribe(s => {
+    this.translate.get('Are you sure you want to delete this file?', { value: file.name }).subscribe(s => {
       if (confirm(s)) {
         this.fileService.delete(file.id).subscribe(() => this.fileList.splice(i, 1));
       }
