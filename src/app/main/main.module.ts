@@ -1,27 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbDropdownModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MainRoutingModule } from './main-routing.module';
+import { SharedModule } from '../shared/shared.module';
 import { UserFileService } from './services/user-file.service';
 import { MainComponent } from './main.component';
 import { HeaderComponent } from './header/header.component';
-import { ToastsComponent } from './toasts/toasts.component';
 
 @NgModule({
   declarations: [
     MainComponent, //
-    HeaderComponent,
-    ToastsComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule, //
     NgbDropdownModule,
-    NgbToastModule,
     FormsModule,
     TranslateModule,
+    SharedModule,
     MainRoutingModule
   ],
   providers: [UserFileService],
