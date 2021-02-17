@@ -19,11 +19,11 @@ describe('MainComponent', () => {
       imports: [
         RouterTestingModule, //
         NgbDropdownModule,
-        SharedModule,
         FormsModule,
         HttpClientModule,
         TranslateModule.forRoot(),
-        JwtModule.forRoot({})
+        JwtModule.forRoot({}),
+        SharedModule
       ],
       declarations: [MainComponent, HeaderComponent]
     }).compileComponents();

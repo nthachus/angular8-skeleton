@@ -2,27 +2,30 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { ToastsComponent } from './components/toasts/toasts.component';
 import { FileSizePipe } from './pipes/file-size.pipe';
 import { FileTypePipe } from './pipes/file-type.pipe';
 import { MediaTypePipe } from './pipes/media-type.pipe';
-import { ToastsComponent } from './components/toasts/toasts.component';
+import { SortableComponent } from './components/sortable/sortable.component';
 
 @NgModule({
   declarations: [
-    FileSizePipe, //
+    ToastsComponent, //
+    FileSizePipe,
     FileTypePipe,
     MediaTypePipe,
-    ToastsComponent
+    SortableComponent
   ],
   imports: [
     CommonModule, //
     NgbToastModule
   ],
   exports: [
-    FileSizePipe, //
+    ToastsComponent, //
+    FileSizePipe,
     FileTypePipe,
     MediaTypePipe,
-    ToastsComponent
+    SortableComponent
   ]
 })
 export class SharedModule {}

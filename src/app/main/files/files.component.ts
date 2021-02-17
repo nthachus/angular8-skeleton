@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
+import { orderBy } from 'lodash';
 
 import { environment } from '../../../environments/environment';
 import { Logger } from '../../shared/logger';
 import { AuthService } from '../../shared/services/auth.service';
+import { SortEvent } from '../../shared/components/sortable/sortable.component';
 import { UserFile, UserFileService } from '../services/user-file.service';
 
 @Component({
@@ -17,7 +19,10 @@ export class FilesComponent implements OnInit, OnDestroy {
   fileList: UserFile[];
   isTrash: boolean;
 
-  private tokenParam: string;
+  sortState: SortEvent | undefined;
+  private fileListOrg: UserFile[];
+
+  private tokenParam: string | undefined;
   private routerSub: Subscription;
 
   constructor(
@@ -32,7 +37,8 @@ export class FilesComponent implements OnInit, OnDestroy {
 
       this.fileService.search(this.isTrash).subscribe(
         data => {
-          this.fileList = data.files;
+          this.fileList = this.fileListOrg = orderBy(data.files, 'id');
+          this.sortState = this.fileList && this.fileList.length ? {} : undefined;
         },
         err => {
           Logger.warn(err.message || err);
@@ -46,7 +52,7 @@ export class FilesComponent implements OnInit, OnDestroy {
   }
 
   downloadLink(file: UserFile): string {
-    if (!this.tokenParam && this.tokenParam !== '') {
+    if (typeof this.tokenParam !== 'string') {
       this.tokenParam = encodeURIComponent(AuthService.currentToken() || '');
     }
 
@@ -77,5 +83,14 @@ export class FilesComponent implements OnInit, OnDestroy {
     }
 
     this.fileService.undelete(file.id).subscribe(() => this.fileList.splice(i, 1));
+  }
+
+  sortFileList(event: SortEvent): void {
+    Logger.debug('sortFileList', event);
+
+    const fields = Object.keys(event);
+    const orders = Object.values(event);
+
+    this.fileList = fields.length ? orderBy(this.fileListOrg, fields, orders) : this.fileListOrg;
   }
 }

@@ -1,0 +1,54 @@
+@import '~font-awesome/scss/variables';
+@import '~font-awesome/scss/mixins';
+
+:host {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 1em;
+
+  &.disabled {
+    cursor: auto;
+  }
+
+  &:before {
+    @include fa-icon();
+
+    font-size: 1.175em;
+    line-height: 0.85em;
+    content: $fa-var-sort;
+
+    position: absolute;
+    left: 0;
+    top: 0.25em;
+  }
+
+  &.asc:before {
+    content: $fa-var-sort-asc;
+  }
+
+  &.desc:before {
+    content: $fa-var-sort-desc;
+  }
+
+  &.disabled:hover:before,
+  &:before {
+    opacity: 0.5;
+  }
+
+  &:hover:before,
+  &.asc:before,
+  &.desc:before {
+    opacity: 1;
+  }
+
+  &.icon-right {
+    padding-left: 0;
+    padding-right: 1em;
+
+    &:before {
+      left: auto;
+      right: 0;
+    }
+  }
+}

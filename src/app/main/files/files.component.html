@@ -10,9 +10,15 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">&nbsp;</th>
-          <th scope="col" class="w-50" translate>Filename</th>
-          <th scope="col" translate>Size</th>
-          <th scope="col" translate>Date</th>
+          <th scope="col" class="w-50">
+            <sortable-header [(state)]="sortState" (sort)="sortFileList($event)" column="name" translate>Filename</sortable-header>
+          </th>
+          <th scope="col">
+            <sortable-header [(state)]="sortState" (sort)="sortFileList($event)" column="size" translate>Size</sortable-header>
+          </th>
+          <th scope="col">
+            <sortable-header [(state)]="sortState" (sort)="sortFileList($event)" column="updated_at" translate>Date</sortable-header>
+          </th>
           <th scope="col" translate>Actions</th>
         </tr>
       </thead>
