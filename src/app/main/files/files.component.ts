@@ -89,7 +89,7 @@ export class FilesComponent implements OnInit, OnDestroy {
     Logger.debug('sortFileList', event);
 
     const fields = Object.keys(event);
-    const orders = Object.values(event);
+    const orders = fields.map(column => event[column]);
 
     this.fileList = fields.length ? orderBy(this.fileListOrg, fields, orders) : this.fileListOrg;
   }
