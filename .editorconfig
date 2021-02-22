@@ -30,7 +30,7 @@ do_not_indent_children_of_tags = html
 
 # noinspection EditorConfigKeyCorrectness
 [*.{css,scss}]
-quote_type = single
+quote_type = double
 blank_lines_between_blocks = 0
 blank_lines_around_nested_selector = 0
 
