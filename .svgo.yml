@@ -1,0 +1,11 @@
+plugins:
+  - removeViewBox: false
+  - mergePaths: false
+  - convertPathData:
+      curveSmoothShorthands: false
+      noSpaceAfterFlags: false
+  # - convertShapeToPath: false
+
+js2svg:
+  pretty: true
+  indent: "  "

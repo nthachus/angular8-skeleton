@@ -1,8 +1,9 @@
 <header>
   <nav class="navbar navbar-expand px-0 navbar-light bg-light shadow-sm">
     <div class="container px-3">
-      <a class="navbar-brand bigger-1 py-0" routerLink="/">
-        <img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="32" height="32" />
+      <a class="navbar-brand py-0" routerLink="/">
+        <!--suppress HtmlUnknownTarget -->
+        <img src="assets/images/logo.svg" alt="" width="32" height="32" />
       </a>
 
       <ul class="navbar-nav ml-auto">
@@ -21,16 +22,16 @@
           </button>
 
           <div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="navbarDropdownMain">
-            <a ngbDropdownItem [routerLink]="filesLink">
+            <a ngbDropdownItem [routerLink]="[filesLink]">
               <i class="fa fa-sitemap fa-fw bigger-2" aria-hidden="true">&nbsp;</i>
               <span translate>My Files</span>
             </a>
-            <a ngbDropdownItem [routerLink]="filesLink" [queryParams]="{ trash: '' }">
+            <a ngbDropdownItem [routerLink]="[filesLink]" [queryParams]="{ trash: '' }">
               <i class="fa fa-trash-o fa-fw bigger-2" aria-hidden="true">&nbsp;</i>
               <span translate>Trash</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a ngbDropdownItem [routerLink]="loginLink" (click)="logout()">
+            <a ngbDropdownItem [routerLink]="[loginLink]" (click)="logout()">
               <i class="fa fa-sign-out fa-fw bigger-2" aria-hidden="true">&nbsp;</i>
               <span translate>Logout</span>
             </a>
