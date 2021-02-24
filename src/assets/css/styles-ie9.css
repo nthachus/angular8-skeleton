@@ -141,7 +141,7 @@
 
 /** Navbar **/
 .navbar-brand {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
 }
 .navbar .ml-auto {
   float: right;
@@ -158,4 +158,5 @@
 .input-group-prepend,
 .input-group-append {
   display: table-cell;
+  vertical-align: top;
 }

@@ -1,0 +1,35 @@
+/**
+ * Noto Sans JP (Japanese)
+ * https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;500&display=swap
+ * See: https://google-webfonts-helper.herokuapp.com/fonts
+ */
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("//fonts.gstatic.com/s/notosansjp/v28/-F6ofjtqLzI2JPCgQBnw7HFQoggP.woff2") format("woff2"),
+    url("//fonts.gstatic.com/s/notosansjp/v28/-F6ofjtqLzI2JPCgQBnw7HFQoggJ.woff") format("woff"),
+    url("~/assets/fonts/notosansjp/v28/NotoSansJP-Thin.ttf") format("truetype"),
+    url("//fonts.gstatic.com/s/notosansjp/v28/-F6ofjtqLzI2JPCgQBnw7HFQoggM-FNthvIU.otf") format("opentype");
+}
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("//fonts.gstatic.com/s/notosansjp/v28/-F6pfjtqLzI2JPCgQBnw7HFQaioq1w.woff2") format("woff2"),
+    url("//fonts.gstatic.com/s/notosansjp/v28/-F6pfjtqLzI2JPCgQBnw7HFQaioq0Q.woff") format("woff"),
+    url("~/assets/fonts/notosansjp/v28/NotoSansJP-Light.ttf") format("truetype"),
+    url("//fonts.gstatic.com/s/notosansjp/v28/-F6pfjtqLzI2JPCgQBnw7HFQaioq1H1hj-sNFQ.otf") format("opentype");
+}
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("//fonts.gstatic.com/s/notosansjp/v28/-F6pfjtqLzI2JPCgQBnw7HFQMisq1w.woff2") format("woff2"),
+    url("//fonts.gstatic.com/s/notosansjp/v28/-F6pfjtqLzI2JPCgQBnw7HFQMisq0Q.woff") format("woff"),
+    url("~/assets/fonts/notosansjp/v28/NotoSansJP-Medium.ttf") format("truetype"),
+    url("//fonts.gstatic.com/s/notosansjp/v28/-F6pfjtqLzI2JPCgQBnw7HFQMisq1H1hj-sNFQ.otf") format("opentype");
+}

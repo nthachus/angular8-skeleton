@@ -30,6 +30,7 @@
     "bootstrap": "~4.3.1",
     "bootswatch": "~4.3.1",
     "classlist.js": "^1.1.20150312",
+    "console-polyfill": "0.2 || 0.4",
     "font-awesome": "~4.7.0",
     "hash.js": "^1.0.3",
     "lodash": "^4.17.15",
@@ -69,6 +70,7 @@
     "**/compression/bytes": "3.1.0",
     "**/engine.io/cookie": "0.4.0",
     "**/http-errors/setprototypeof": "1.1.1",
+    "console-polyfill": "nthachus/console-polyfill#0.4.x",
     "ngx-uploadx": "nthachus/ngx-uploadx#release-4.0.2-0",
     "prettier": "nthachus/prettier#release-2.1.2-0"
   },

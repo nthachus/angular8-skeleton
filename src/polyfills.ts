@@ -17,6 +17,9 @@
 /***************************************************************************************************
  * BROWSER POLYFILLS
  */
+/** IE9 patches */
+import 'core-js/modules/es.object.entries';
+import 'console-polyfill';
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 import 'classlist.js'; // Run `yarn add classlist.js`.

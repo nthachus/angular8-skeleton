@@ -34,7 +34,7 @@
                 aria-valuemin="0"
                 aria-valuemax="100"
                 [attr.aria-valuenow]="item.progress"
-                [style.width.%]="item.progress"
+                [style.width.%]="item.progress || 0"
               ></div>
             </div>
           </td>
@@ -50,7 +50,8 @@
             >
               <i class="fa fa-upload fa-fw" aria-hidden="true"></i>
             </button>
-            <i>&nbsp;</i>
+
+            <samp>&nbsp;</samp>
             <button
               type="button"
               class="btn py-0 px-1 btn-secondary"
@@ -61,7 +62,8 @@
             >
               <i class="fa fa-ban fa-fw" aria-hidden="true"></i>
             </button>
-            <i>&nbsp;</i>
+
+            <samp>&nbsp;</samp>
             <button
               type="button"
               class="btn py-0 px-1 btn-danger"
@@ -85,7 +87,7 @@
         aria-valuemin="0"
         aria-valuemax="100"
         [attr.aria-valuenow]="totalProgress"
-        [style.width.%]="totalProgress"
+        [style.width.%]="totalProgress || 0"
       ></div>
     </div>
 
@@ -94,12 +96,12 @@
         <i class="fa fa-upload" aria-hidden="true">&nbsp;</i>
         <span translate>Upload All</span>
       </button>
-      <i>&nbsp;&nbsp;</i>
+      <samp>&nbsp;&nbsp;</samp>
       <button type="button" class="btn btn-secondary" (click)="processUpload('pause')" [disabled]="!hasUploadState('uploading')">
         <i class="fa fa-ban" aria-hidden="true">&nbsp;</i>
         <span translate>Pause All</span>
       </button>
-      <i>&nbsp;&nbsp;</i>
+      <samp>&nbsp;&nbsp;</samp>
       <button type="button" class="btn btn-warning" (click)="processUpload('cancel')" [disabled]="!hasUploadState()">
         <i class="fa fa-trash" aria-hidden="true">&nbsp;</i>
         <span translate>Cancel All</span>
