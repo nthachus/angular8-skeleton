@@ -34,7 +34,7 @@
             <ng-container *ngIf="!item.deleted_at; then fileActions; else trashActions"></ng-container>
             <ng-template #fileActions>
               <a
-                class="btn py-0 px-1 btn-primary"
+                class="btn py-0 px-1 btn-primary mr-1"
                 role="button"
                 [attr.href]="downloadLink(item)"
                 target="_blank"
@@ -49,7 +49,7 @@
               <button
                 *ngIf="!!item.deleted_at"
                 type="button"
-                class="btn py-0 px-1 btn-success"
+                class="btn py-0 px-1 btn-success mr-1"
                 [attr.aria-label]="'Undelete' | translate"
                 [title]="'Undelete' | translate"
                 (click)="undeleteFile(item)"
@@ -58,7 +58,6 @@
               </button>
             </ng-template>
 
-            <samp>&nbsp;</samp>
             <button
               type="button"
               class="btn py-0 px-1 btn-danger"

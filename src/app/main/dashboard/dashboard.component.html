@@ -42,7 +42,7 @@
           <td class="small text-nowrap">
             <button
               type="button"
-              class="btn py-0 px-1 btn-success"
+              class="btn py-0 px-1 btn-success mr-1"
               [attr.aria-label]="'Upload' | translate"
               [title]="'Upload' | translate"
               (click)="item.status = 'queue'"
@@ -51,10 +51,9 @@
               <i class="fa fa-upload fa-fw" aria-hidden="true"></i>
             </button>
 
-            <samp>&nbsp;</samp>
             <button
               type="button"
-              class="btn py-0 px-1 btn-secondary"
+              class="btn py-0 px-1 btn-secondary mr-1"
               [attr.aria-label]="'Pause' | translate"
               [title]="'Pause' | translate"
               (click)="item.status = 'paused'"
@@ -63,7 +62,6 @@
               <i class="fa fa-ban fa-fw" aria-hidden="true"></i>
             </button>
 
-            <samp>&nbsp;</samp>
             <button
               type="button"
               class="btn py-0 px-1 btn-danger"
@@ -92,16 +90,16 @@
     </div>
 
     <p>
-      <button type="button" class="btn btn-primary" (click)="processUpload('upload')" [disabled]="!hasUploadState('added', 'paused')">
+      <button type="button" class="btn btn-primary mr-2" (click)="processUpload('upload')" [disabled]="!hasUploadState('added', 'paused')">
         <i class="fa fa-upload" aria-hidden="true">&nbsp;</i>
         <span translate>Upload All</span>
       </button>
-      <samp>&nbsp;&nbsp;</samp>
-      <button type="button" class="btn btn-secondary" (click)="processUpload('pause')" [disabled]="!hasUploadState('uploading')">
+
+      <button type="button" class="btn btn-secondary mr-2" (click)="processUpload('pause')" [disabled]="!hasUploadState('uploading')">
         <i class="fa fa-ban" aria-hidden="true">&nbsp;</i>
         <span translate>Pause All</span>
       </button>
-      <samp>&nbsp;&nbsp;</samp>
+
       <button type="button" class="btn btn-warning" (click)="processUpload('cancel')" [disabled]="!hasUploadState()">
         <i class="fa fa-trash" aria-hidden="true">&nbsp;</i>
         <span translate>Cancel All</span>

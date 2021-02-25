@@ -1,3 +1,11 @@
+.navbar-brand {
+  font-size: 1.585rem;
+
+  > img {
+    vertical-align: bottom;
+  }
+}
+
 .navbar-nav {
   .navbar-toggler {
     display: inline-block;

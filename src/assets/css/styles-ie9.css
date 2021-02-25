@@ -140,9 +140,6 @@
 }
 
 /** Navbar **/
-.navbar-brand {
-  font-size: 1.35rem;
-}
 .navbar .ml-auto {
   float: right;
 }
