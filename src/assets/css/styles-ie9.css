@@ -1,3 +1,28 @@
+/**
+ * Noto Sans JP (Converted by FontForge)
+ */
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/notosansjp/v28/NotoSansJP-Thin.woff") format("woff");
+}
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/notosansjp/v28/NotoSansJP-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/notosansjp/v28/NotoSansJP-Medium.woff") format("woff");
+}
+
 /*!
  * Bootstrap 4 for IE9 - v4.3.1
  * https://github.com/coliff/bootstrap-ie8
