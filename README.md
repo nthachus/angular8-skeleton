@@ -12,27 +12,31 @@ For Framework:
 
 - Angular (v8.2)
 - Bootstrap (v4.3)
-- NG Bootstrap - Angular powered Bootstrap (v5)
+- NG Bootstrap (v5) - Angular powered Bootstrap
 - Font Awesome (v4.7)
 - Lodash (v4)
 
 Libraries:
 
-- `hash.js` - Hash functions in pure JavaScript (v1)
-- `angular-jwt` - Helper library for handling JWTs in Angular (v3)
-- `ngx-translate` - The internationalization (i18n) library for Angular (v12)
-- `ngx-uploadx` - Angular Resumable Upload Module (v4)
+- `hash.js` (v1) - Hash functions in pure JavaScript
+- `angular-jwt` (v3) - Helper library for handling JWTs in Angular
+- `ngx-translate` (v12) - The internationalization (i18n) library for Angular
+- `ngx-uploadx` (v4) - Angular Resumable Upload Module
 
 For Development:
 
 - Angular CLI (v8.3)
-- Jasmine - Behavior-Driven JavaScript (v3.4)
-- Karma - Spectacular Test Runner for JavaScript (v4.1)
-- Protractor - E2E test framework for Angular (v7.0)
-- TSLint - An extensible linter for the TypeScript language (v5.15)
-- Prettier - Opinionated Code Formatter (v2)
+- Jasmine (v3.4) - Behavior-Driven JavaScript
+- Karma (v4.1) - Spectacular Test Runner for JavaScript
+- Protractor (v7.0) - E2E test framework for Angular
+- TSLint (v5.15) - An extensible linter for the TypeScript language
+- Prettier (v2) - Opinionated Code Formatter
 
 ## Features
+
+- Supported browsers: IE 9+
+- Use `AOT` with `Ivy` for faster compilation
+- Styling with `Bootstrap` v4.3 and `Font Awesome` v4.7
 
 ## Directory structure
 
@@ -43,12 +47,33 @@ $
 │  └─ protractor.conf.js
 ├─ [src]
 │  ├─ [app]
+│  │  ├─ [shared]
+│  │  │  ├─ [components]
+│  │  │  ├─ [interceptors]
+│  │  │  ├─ [pipes]
+│  │  │  ├─ [services]
+│  │  │  └─ shared.module.ts
+│  │  ├─ [<layout>]
+│  │  │  ├─ [services]
+│  │  │  ├─ [<component>]
+│  │  │  ├─ [<module>]
+│  │  │  └─ <layout>.module.ts
+│  │  └─ app.module.ts
 │  ├─ [assets]
+│  │  ├─ [css]
+│  │  ├─ [fonts]
+│  │  ├─ [i18n]
+│  │  └─ [images]
 │  ├─ [environments]
-│  └─ _fonts.css
-├─ angular.json
-├─ karma.conf.js
-└─ tsconfig*.json
+│  ├─ _fonts.css
+│  ├─ styles.scss
+│  ├─ index.html
+│  └─ proxy.conf.json
+├─ .svgo.yml          - Configuration for SVG optimizing tool
+├─ angular.json       - Angular workspace configuration
+├─ karma.conf.js      - Test Runner configuration
+├─ tsconfig*.json     - TypeScript configurations
+└─ tslint.json        - TypeScript linter configuration
 ```
 
 ## Development
