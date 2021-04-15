@@ -36,44 +36,68 @@ For Development:
 
 - Supported browsers: IE 9+
 - Use `AOT` with `Ivy` for faster compilation
-- Styling with `Bootstrap` v4.3 and `Font Awesome` v4.7
+- Styling with `Bootstrap` v4.3 and `Font Awesome` v4.7 using `Sass` language
+- Use `Google` font `Noto Sans JP` for cross-browsers
+- Proxying to the backend API on development mode with `proxy.conf.json` file
+- Having multiple layouts for different routes
+- Handle API errors with global `toast` service
+- Add `Accept-Language` header to APIs automatically
+- Support sortable data tables with `sortable-header` component
+- Provide `fileSize` pipe to print file sizes in human readable format
+- Detect icon class for file types with `fileType` and `mediaType` pipes
+- Localization (i18n) with `ngx-translate` v12
+- Authentication with `JWT`
+- User files management with resumable upload / download features
 
 ## Directory structure
 
 ```
 $
-├─ [e2e]
+├─ [e2e]                    - End-to-end tests
 │  ├─ [src]
-│  └─ protractor.conf.js
+│  └─ protractor.conf.js    - Test-tool configuration
 ├─ [src]
-│  ├─ [app]
-│  │  ├─ [shared]
-│  │  │  ├─ [components]
-│  │  │  ├─ [interceptors]
+│  ├─ [app]                       - Contains the application logic and data
+│  │  ├─ [shared]                 - The shared module that provide global components, services, pipes,...
+│  │  │  ├─ [components]          - Contains shared components (e.g. Toasts, SortableTableHeader)
+│  │  │  ├─ [interceptors]        - Interceptors to manage HTTP requests
 │  │  │  ├─ [pipes]
-│  │  │  ├─ [services]
+│  │  │  ├─ [services]            - Shared services, guards,... (e.g Authentication service)
+│  │  │  ├─ constants.ts          - Defines app constants (e.g. Route paths)
+│  │  │  ├─ logger.ts             - Helper class for console logging
+│  │  │  ├─ logger.spec.ts        - Unit test for the Logger class
 │  │  │  └─ shared.module.ts
-│  │  ├─ [<layout>]
-│  │  │  ├─ [services]
-│  │  │  ├─ [<component>]
-│  │  │  ├─ [<module>]
+│  │  ├─ [<layout>]                     - Defines a layout module
+│  │  │  ├─ [services]                  - The module specific services
+│  │  │  ├─ [<component>]               - The module specific components
+│  │  │  ├─ [<module>]                  - Defines a layout sub-module (e.g. View page)
+│  │  │  ├─ <layout>-routing.module.ts  - Defines routes for the layout
+│  │  │  ├─ <layout>.component.ts       - The layout component
 │  │  │  └─ <layout>.module.ts
-│  │  └─ app.module.ts
-│  ├─ [assets]
-│  │  ├─ [css]
+│  │  ├─ app-routing.module.ts    - Defines the app's root routes
+│  │  ├─ app.component.ts         - The logic for the app's root component
+│  │  ├─ app.component.spec.ts
+│  │  └─ app.module.ts            - The root module that used to assemble the application
+│  ├─ [assets]            - Contains image and other asset files
+│  │  ├─ [css]            - Specific CSS files (e.g. Styles for IE)
 │  │  ├─ [fonts]
-│  │  ├─ [i18n]
+│  │  ├─ [i18n]           - Contains translation JSON files
 │  │  └─ [images]
-│  ├─ [environments]
-│  ├─ _fonts.css
-│  ├─ styles.scss
-│  ├─ index.html
-│  └─ proxy.conf.json
-├─ .svgo.yml          - Configuration for SVG optimizing tool
-├─ angular.json       - Angular workspace configuration
-├─ karma.conf.js      - Test Runner configuration
-├─ tsconfig*.json     - TypeScript configurations
-└─ tslint.json        - TypeScript linter configuration
+│  ├─ [environments]      - Contains build configuration options for dev / prod target environments
+│  ├─ _fonts.css          - Defines CSS fonts for the app (e.g. Noto Sans JP)
+│  ├─ styles.scss         - Global styles for the project
+│  ├─ favicon.ico
+│  ├─ index.html          - The main HTML page
+│  ├─ main.ts             - The main entry point for the application
+│  ├─ polyfills.ts        - Provides polyfill scripts for browser support
+│  ├─ test.ts             - The main entry point for the unit tests
+│  └─ proxy.conf.json     - The backend API proxying configuration for dev server
+├─ .editorconfig
+├─ .svgo.yml              - Configuration for SVG optimizing tool
+├─ angular.json           - Angular workspace configuration
+├─ karma.conf.js          - Test Runner configuration
+├─ tsconfig*.json         - TypeScript configurations
+└─ tslint.json            - TypeScript linter configuration
 ```
 
 ## Development

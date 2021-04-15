@@ -8,10 +8,10 @@ export class FileTypePipe implements PipeTransform {
     ['word', /^docx?|odt|rtf|wpd$/],
     ['powerpoint', /^pptx?|pps|odp$/],
     ['excel', /^xls[xm]?|ods$/],
-    ['audio', /^ac[3m]|aif|a[af]c|cda|m4a|midi?|mp[3a]|og[ag]|wave?|weba|wma|mka|flac$/],
+    ['audio', /^ac[3m]|aif|a[af]c|ape|cda|m4a|midi?|mp[3a]|og[ag]|wave?|weba|wma|mka|flac$/],
     ['video', /^3g[2p]|avi|flv|h264|m4v|mkv|mov|mp4|mpe?g|ogv|rm|vob|wmv|ts|webm$/],
     ['archive', /^tar|[gx]z|tgz|zip|rar|7z|arj|lzma|bz2?|jar|cab|deb|cpio|rpm$/],
-    ['code', /^css|html?|[cfjt]s|[rv]b|p[ly]|php|s[ac]ss|less|[pb]as|cc?|s?h|[ch]pp|java$/],
+    ['code', /^css|html?|xml|asm|[cfjt]s|[rv]b|p[ly]|php|s[ac]ss|less|[pb]as|cc?|s?h|[ch]pp|java$/],
     ['text', /^te?xt|csv|log|tex|md$/]
   ];
 

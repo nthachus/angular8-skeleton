@@ -18,9 +18,13 @@ export class MediaTypePipe implements PipeTransform {
     ['video', /^video\//],
     [
       'archive',
-      /^application\/(g?zip|java-archive|vnd\.ms-?cab|x-([7x]z|arj|[rtx]ar|cpio|gtar|lzip|lzma|bzip2|archive|iso9660|compress))\b/
+      /^application\/(g?zip|java-archive|vnd\.ms-?cab|x-([7x]z|arj|[rtx]ar|cpio|rpm|gtar|l?zip|lzma|bzip2?|archive|iso9660|compress))\b/
     ],
-    ['code', /^(text\/(javascript|css|html)|application\/(javascript|xhtml\+xml|x-(c?sh|httpd-php)))\b/],
+    [
+      'code',
+      // tslint:disable-next-line:max-line-length
+      /^(text\/(javascript|css|html|xml|x-.*\b(asm|python|c|java|batch|pascal|perl|php|ruby|shellscript))|application\/(javascript|xhtml\+xml|x-(c?sh|httpd-php)))\b/
+    ],
     ['text', /^text\//]
   ];
 
