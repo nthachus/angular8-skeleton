@@ -9,7 +9,7 @@ export class FileSizePipe implements PipeTransform {
     ['Bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
   ];
 
-  transform(sizeInBytes: any, precision: number = 2, formatType: number = 0): string | null {
+  transform(sizeInBytes: any, locales?: string, precision: number = 2, formatType: number = 0): string | null {
     if (!sizeInBytes) {
       return null;
     }
@@ -22,6 +22,6 @@ export class FileSizePipe implements PipeTransform {
     const units = FileSizePipe.UNITS[formatType];
     const exponent = Math.min(Math.floor(Math.log(size) / Math.log(1024)), units.length - 1);
 
-    return (size / Math.pow(1024, exponent)).toFixed(precision) + units[exponent];
+    return Number((size / Math.pow(1024, exponent)).toFixed(precision)).toLocaleString(locales) + units[exponent];
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Tus, UploadAction, UploadState, UploadStatus, UploadxOptions, UploadxService } from 'ngx-uploadx';
 
 import { environment } from '../../../environments/environment';
@@ -22,7 +23,11 @@ export class DashboardComponent implements OnInit {
     uploaderClass: Tus
   };
 
-  constructor(readonly uploadService: UploadxService, private toastService: ToastService) {}
+  constructor(
+    readonly translate: TranslateService, //
+    readonly uploadService: UploadxService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {}
 

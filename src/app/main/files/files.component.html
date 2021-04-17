@@ -28,7 +28,7 @@
             <i [class]="'fa fa-lg fa-fw fa-file' + ((item.media_type | mediaType: '-') || (item.name | fileType: '-')) + '-o'"></i>
           </td>
           <td>{{ item.name }}</td>
-          <td class="text-nowrap">{{ item.size | fileSize }}</td>
+          <td class="text-nowrap">{{ item.size | fileSize: translate.currentLang }}</td>
           <td class="text-nowrap">{{ item.updated_at | date: "short":undefined:translate.currentLang }}</td>
           <td class="small text-nowrap">
             <ng-container *ngIf="!item.deleted_at; then fileActions; else trashActions"></ng-container>

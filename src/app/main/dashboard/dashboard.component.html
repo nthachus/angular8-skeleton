@@ -25,7 +25,7 @@
             <i [class]="'fa fa-lg fa-fw fa-file' + (item.name | fileType: '-') + '-o'"></i>
           </td>
           <td>{{ item.name }}</td>
-          <td class="text-nowrap">{{ item.size | fileSize }}</td>
+          <td class="text-nowrap">{{ item.size | fileSize: translate.currentLang }}</td>
           <td class="align-middle">
             <div class="progress">
               <div
